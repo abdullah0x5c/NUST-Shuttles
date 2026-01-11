@@ -124,7 +124,7 @@ function ShuttleMarker({ shuttle, isSelected, onSelect }) {
           <div className="shuttle-popup__header">
             <span className={`status-dot ${shuttle.isActive ? 'active' : 'inactive'}`}></span>
             <strong className="shuttle-popup__bus-number">
-              Bus #{shuttle.busNumber || shuttle.id}
+              Shuttle #{shuttle.busNumber || shuttle.id}
             </strong>
           </div>
           

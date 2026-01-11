@@ -2,7 +2,7 @@
  * ShuttleCard Component
  * 
  * Individual shuttle card displayed in the StatusPanel.
- * Shows bus number, route, status, and speed at a glance.
+ * Shows shuttle number, route, status, and speed at a glance.
  */
 
 import React from 'react';
@@ -58,7 +58,7 @@ function ShuttleCard({ shuttle, isSelected, onSelect }) {
       className={`shuttle-card ${isSelected ? 'shuttle-card--selected' : ''} ${shuttle.isActive ? 'shuttle-card--active' : 'shuttle-card--inactive'}`}
       onClick={onSelect}
       aria-pressed={isSelected}
-      aria-label={`Select bus ${shuttle.busNumber || shuttle.id}`}
+      aria-label={`Select shuttle ${shuttle.busNumber || shuttle.id}`}
     >
       {/* Status indicator */}
       <div className="shuttle-card__status">
@@ -69,7 +69,7 @@ function ShuttleCard({ shuttle, isSelected, onSelect }) {
       <div className="shuttle-card__info">
         <div className="shuttle-card__header">
           <span className="shuttle-card__bus-number">
-            Bus #{shuttle.busNumber || shuttle.id}
+            Shuttle #{shuttle.busNumber || shuttle.id}
           </span>
           {shuttle.speed > 0 && (
             <span className="shuttle-card__speed">

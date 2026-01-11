@@ -15,8 +15,10 @@ import './Header.css';
  * @param {number} props.activeCount - Number of currently active shuttles
  * @param {number} props.totalCount - Total number of shuttles
  * @param {Date} props.lastUpdated - When data was last received
+ * @param {Function} props.onFindNearest - Callback when "Find Nearest" button is clicked
+ * @param {boolean} props.isLocating - Whether we're currently getting user's location
  */
-function Header({ activeCount = 0, totalCount = 0, lastUpdated }) {
+function Header({ activeCount = 0, totalCount = 0, lastUpdated, onFindNearest, isLocating = false }) {
   // Format the last updated time for display
   const formatTime = (date) => {
     if (!date) return '--:--';
@@ -47,6 +49,19 @@ function Header({ activeCount = 0, totalCount = 0, lastUpdated }) {
           {activeCount}/{totalCount} Active
         </span>
       </div>
+
+      {/* Find Nearest Shuttle button */}
+      <button 
+        className={`header__find-btn ${isLocating ? 'header__find-btn--loading' : ''}`}
+        onClick={onFindNearest}
+        disabled={isLocating || activeCount === 0}
+        title="Find the nearest active shuttle to your location"
+      >
+        <span className="header__find-icon">{isLocating ? '⏳' : '📍'}</span>
+        <span className="header__find-text">
+          {isLocating ? 'Locating...' : 'Find Nearest Shuttle'}
+        </span>
+      </button>
 
       {/* Right section: Last updated time */}
       <div className="header__meta">

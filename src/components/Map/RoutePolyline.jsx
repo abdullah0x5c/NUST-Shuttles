@@ -18,8 +18,9 @@ import { ROUTE_STYLE } from '../../config/mapConfig';
  * @param {Object} props
  * @param {Array} props.path - Array of [lat, lng] coordinates
  * @param {Object} props.shuttleInfo - Shuttle data for route info
+ * @param {boolean} props.isNearest - Whether this is the nearest shuttle (shows green route)
  */
-function RoutePolyline({ path, shuttleInfo }) {
+function RoutePolyline({ path, shuttleInfo, isNearest = false }) {
   // Don't render if no path data
   if (!path || path.length < 2) {
     return null;
@@ -43,6 +44,9 @@ function RoutePolyline({ path, shuttleInfo }) {
   };
 
   const routeNames = getRouteName();
+  
+  // Use green color for nearest shuttle, default blue otherwise
+  const routeColor = isNearest ? '#3fb950' : ROUTE_STYLE.color;
 
   return (
     <>
@@ -51,6 +55,7 @@ function RoutePolyline({ path, shuttleInfo }) {
         positions={path}
         pathOptions={{
           ...ROUTE_STYLE,
+          color: routeColor,
           // Add animation effect with dash pattern
           className: 'route-line-animated'
         }}
@@ -60,7 +65,7 @@ function RoutePolyline({ path, shuttleInfo }) {
       <Polyline
         positions={path}
         pathOptions={{
-          color: ROUTE_STYLE.color,
+          color: routeColor,
           weight: ROUTE_STYLE.weight + 6,
           opacity: 0.2,
           lineCap: 'round',

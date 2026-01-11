@@ -42,8 +42,9 @@ function MapBoundsHandler() {
  * @param {Array} props.shuttles - Array of shuttle objects to display
  * @param {string|null} props.selectedShuttleId - ID of currently selected shuttle
  * @param {Function} props.onShuttleSelect - Callback when a shuttle is clicked
+ * @param {string|null} props.nearestShuttleId - ID of the nearest shuttle (for green route)
  */
-function MapView({ shuttles = [], selectedShuttleId, onShuttleSelect }) {
+function MapView({ shuttles = [], selectedShuttleId, onShuttleSelect, nearestShuttleId }) {
   // Find the currently selected shuttle for route display
   const selectedShuttle = shuttles.find(s => s.id === selectedShuttleId);
 
@@ -85,6 +86,7 @@ function MapView({ shuttles = [], selectedShuttleId, onShuttleSelect }) {
           <RoutePolyline 
             path={selectedShuttle.routePath}
             shuttleInfo={selectedShuttle}
+            isNearest={selectedShuttle.id === nearestShuttleId}
           />
         )}
         
