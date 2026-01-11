@@ -108,10 +108,11 @@ function App() {
         let minDistance = Infinity;
 
         activeShuttles.forEach(shuttle => {
-          if (shuttle.position) {
+          // Shuttle has latitude and longitude directly on the object
+          if (shuttle.latitude && shuttle.longitude) {
             const distance = calculateDistance(
               userLat, userLng,
-              shuttle.position.lat, shuttle.position.lng
+              shuttle.latitude, shuttle.longitude
             );
             if (distance < minDistance) {
               minDistance = distance;
@@ -124,13 +125,6 @@ function App() {
           // Select the nearest shuttle and mark it as nearest
           setSelectedShuttleId(nearestShuttle.id);
           setNearestShuttleId(nearestShuttle.id);
-          
-          // Show distance in a friendly format
-          const distanceText = minDistance < 1 
-            ? `${Math.round(minDistance * 1000)}m away`
-            : `${minDistance.toFixed(1)}km away`;
-          
-          console.log(`Nearest shuttle: #${nearestShuttle.busNumber} - ${distanceText}`);
         }
 
         setIsLocating(false);
