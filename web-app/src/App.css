@@ -1,0 +1,204 @@
+/* ============================================
+   App Component Styles
+   ============================================ */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  background: var(--color-bg-primary);
+}
+
+/* Main content area - map + status panel */
+.app__main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Error state styling */
+.app--error {
+  justify-content: center;
+  align-items: center;
+}
+
+.error-container {
+  text-align: center;
+  padding: var(--spacing-xl);
+  max-width: 400px;
+}
+
+.error-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: var(--spacing-lg);
+}
+
+.error-container h2 {
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.error-container p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.error-retry {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--color-accent-primary);
+  color: var(--color-bg-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.error-retry:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Popup styling (for map markers) */
+.shuttle-popup {
+  min-width: 180px;
+}
+
+.shuttle-popup__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.shuttle-popup__bus-number {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+
+.shuttle-popup__info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shuttle-popup__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.shuttle-popup__label {
+  color: var(--color-text-muted);
+}
+
+.shuttle-popup__value {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+}
+
+.shuttle-popup__status {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+}
+
+.shuttle-popup__status.active {
+  color: var(--color-shuttle-active);
+}
+
+.shuttle-popup__status.inactive {
+  color: var(--color-shuttle-inactive);
+}
+
+.shuttle-popup__route-hint {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  color: var(--color-accent-primary);
+  text-align: center;
+}
+
+/* Route line animation */
+.route-line-animated {
+  stroke-dasharray: 10, 10;
+  animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+/* Custom shuttle marker styling */
+.shuttle-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app__main {
+    flex-direction: column;
+  }
+}
+
+/* Loading overlay for initial load */
+.app--loading {
+  position: relative;
+}
+
+.app--loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Footer - Made with love */
+.app__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--border-color);
+  font-family: var(--font-display);
+}
+
+.footer__heart {
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.footer__heart:hover {
+  transform: scale(1.3);
+  animation: heartbeat 0.6s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1.3); }
+  50% { transform: scale(1.5); }
+}
+

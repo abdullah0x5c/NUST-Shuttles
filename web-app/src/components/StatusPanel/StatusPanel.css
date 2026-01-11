@@ -1,0 +1,287 @@
+/* ============================================
+   StatusPanel Component Styles
+   ============================================ */
+
+.status-panel {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 100%;
+  max-height: 100%;
+  background: var(--color-bg-secondary);
+  border-left: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+/* Panel header */
+.status-panel__header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.status-panel__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.status-panel__stats {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.status-panel__stat {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.status-panel__stat--active {
+  color: var(--color-shuttle-active);
+}
+
+.status-panel__stat--inactive {
+  color: var(--color-shuttle-inactive);
+}
+
+/* Shuttle list - scrollable container */
+.status-panel__list {
+  flex: 1;
+  min-height: 0; /* Important: allows flexbox child to shrink and scroll */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--spacing-sm);
+}
+
+/* Custom scrollbar for shuttle list */
+.status-panel__list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.status-panel__list::-webkit-scrollbar-track {
+  background: var(--color-bg-tertiary);
+  border-radius: 3px;
+}
+
+.status-panel__list::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: 3px;
+}
+
+.status-panel__list::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Individual shuttle card */
+.shuttle-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  width: 100%;
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  background: var(--color-bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+}
+
+.shuttle-card:hover {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-accent-primary);
+  transform: translateX(2px);
+}
+
+.shuttle-card--selected {
+  background: var(--color-bg-tertiary);
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 1px var(--color-accent-primary);
+}
+
+.shuttle-card--inactive {
+  opacity: 0.7;
+}
+
+.shuttle-card--inactive:hover {
+  opacity: 1;
+}
+
+/* Status indicator */
+.shuttle-card__status {
+  padding-top: 2px;
+}
+
+/* Card info section */
+.shuttle-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.shuttle-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xs);
+}
+
+.shuttle-card__bus-number {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.shuttle-card__speed {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-accent-primary);
+  background: rgba(88, 166, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.shuttle-card__route {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shuttle-card__last-active {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}
+
+/* Selection indicator */
+.shuttle-card__selected-indicator {
+  color: var(--color-accent-primary);
+  padding-top: 2px;
+}
+
+/* Loading skeleton */
+.status-panel__loading {
+  padding: var(--spacing-sm);
+}
+
+.status-panel__skeleton {
+  display: flex;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+}
+
+.status-panel__skeleton-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-bg-tertiary);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.status-panel__skeleton-lines {
+  flex: 1;
+}
+
+.status-panel__skeleton-line {
+  height: 12px;
+  background: var(--color-bg-tertiary);
+  border-radius: 4px;
+  margin-bottom: var(--spacing-xs);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.status-panel__skeleton-line--short {
+  width: 60%;
+}
+
+/* Empty state */
+.status-panel__empty {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--color-text-muted);
+}
+
+.status-panel__empty-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.status-panel__empty-text {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.status-panel__empty-hint {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+/* Footer */
+.status-panel__footer {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--border-color);
+}
+
+.status-panel__hint {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0;
+}
+
+/* Credits - Made with love */
+.status-panel__credits {
+  padding: 10px;
+  border-top: 1px solid var(--border-color);
+  background: var(--color-bg-primary);
+  text-align: center;
+}
+
+.credits__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.credits__link:hover {
+  color: var(--color-text-secondary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .status-panel {
+    width: 100%;
+    max-height: 40vh;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .status-panel__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+  
+  .shuttle-card {
+    flex: 1 1 calc(50% - var(--spacing-sm));
+    min-width: 140px;
+    margin-bottom: 0;
+  }
+}
+
